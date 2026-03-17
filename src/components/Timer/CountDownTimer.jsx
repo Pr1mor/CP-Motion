@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import FormatTime from "./FormatTime";
 
 export default function CountDownTimer({ initialSeconds }) {
 	const [timeLeft, setTimeLeft] = useState(initialSeconds);
@@ -30,10 +31,9 @@ export default function CountDownTimer({ initialSeconds }) {
 
 	return (
 		<div>
-			<ConvertIntoFormat seconds={timeLeft} />
+			<FormatTime seconds={timeLeft} />
 
 			<div>
-				{/* Toggle between Pause and Resume using our named functions */}
 				{isRunning ? (
 					<button onClick={handlePause}>Pause</button>
 				) : (
@@ -43,17 +43,5 @@ export default function CountDownTimer({ initialSeconds }) {
 				<button onClick={handleReset}>Reset</button>
 			</div>
 		</div>
-	);
-}
-
-function ConvertIntoFormat({ seconds }) {
-	const minutes = Math.floor(seconds / 60);
-	const remainingSeconds = seconds % 60;
-	const formattedSeconds = String(remainingSeconds).padStart(2, "0");
-
-	return (
-		<h1>
-			{minutes}:{formattedSeconds}
-		</h1>
 	);
 }
