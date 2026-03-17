@@ -27,40 +27,24 @@ function App() {
 	return (
 		<>
 			{isEditing ? (
-				<div
-				// style={{
-				// 	marginBottom: "30px",
-				// 	display: "flex",
-				// 	flexDirection: "column",
-				// 	gap: "10px",
-				// }}
-				>
+				<div className="editable-motion-block">
 					<input
+						className="edit-motion"
 						type="text"
 						value={motion}
 						onChange={(e) => setMotion(e.target.value)}
 						placeholder="Enter debate motion here..."
-						// style={{
-						// 	padding: "8px",
-						// 	fontSize: "16px",
-						// 	width: "100%",
-						// 	boxSizing: "border-box",
-						// }}
 					/>
 					<textarea
+						className="edit-info-slide"
 						value={infoSlide}
 						onChange={(e) => setInfoSlide(e.target.value)}
 						placeholder="Enter info slide here (optional)..."
-						// style={{
-						// 	padding: "8px",
-						// 	fontSize: "14px",
-						// 	minHeight: "80px",
-						// 	width: "100%",
-						// 	boxSizing: "border-box",
-						// 	resize: "vertical",
-						// }}
 					/>
-					<button onClick={() => setIsEditing(false)}>
+					<button
+						id="save-motion-button"
+						onClick={() => setIsEditing(false)}
+					>
 						Save Motion
 					</button>
 				</div>
