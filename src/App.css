@@ -53,3 +53,14 @@
 
 	resize: vertical;
 }
+
+button {
+	min-width: 100px;
+	height: 5vh;
+	background-color: #cb9509;
+	border: 1px solid #00183a;
+	font-weight: bold;
+	font-size: larger;
+	color: #00183a;
+	cursor: pointer;
+}
