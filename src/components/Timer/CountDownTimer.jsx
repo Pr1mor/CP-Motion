@@ -31,17 +31,23 @@ export default function CountDownTimer({ initialSeconds }) {
 	};
 
 	return (
-		<div className="time-button-block">
+		<div>
 			<FormatTime seconds={timeLeft} />
 
-			<div>
+			<div className="button-block">
 				{isRunning ? (
-					<button onClick={handlePause}>Pause</button>
+					<button id="pause-button" onClick={handlePause}>
+						Pause
+					</button>
 				) : (
-					<button onClick={handleResume}>Resume</button>
+					<button id="resume-button" onClick={handleResume}>
+						Resume
+					</button>
 				)}
 
-				<button onClick={handleReset}>Reset</button>
+				<button id="reset-button" onClick={handleReset}>
+					Reset
+				</button>
 			</div>
 		</div>
 	);
