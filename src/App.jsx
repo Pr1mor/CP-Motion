@@ -1,6 +1,6 @@
 import { use, useState } from "react";
 import "./App.css";
-import CountDownTimer from "./CountDownTimer";
+import CountDownTimer from "./components/Timer/CountDownTimer";
 
 const cpFormat = [
 	{ role: "Prime Minister", time: 6 * 60 },
@@ -28,71 +28,65 @@ function App() {
 		<>
 			{isEditing ? (
 				<div
-					style={{
-						marginBottom: "30px",
-						display: "flex",
-						flexDirection: "column",
-						gap: "10px",
-					}}
+				// style={{
+				// 	marginBottom: "30px",
+				// 	display: "flex",
+				// 	flexDirection: "column",
+				// 	gap: "10px",
+				// }}
 				>
 					<input
 						type="text"
 						value={motion}
 						onChange={(e) => setMotion(e.target.value)}
 						placeholder="Enter debate motion here..."
-						style={{
-							padding: "8px",
-							fontSize: "16px",
-							width: "100%",
-							boxSizing: "border-box",
-						}}
+						// style={{
+						// 	padding: "8px",
+						// 	fontSize: "16px",
+						// 	width: "100%",
+						// 	boxSizing: "border-box",
+						// }}
 					/>
 					<textarea
 						value={infoSlide}
 						onChange={(e) => setInfoSlide(e.target.value)}
 						placeholder="Enter info slide here (optional)..."
-						style={{
-							padding: "8px",
-							fontSize: "14px",
-							minHeight: "80px",
-							width: "100%",
-							boxSizing: "border-box",
-							resize: "vertical",
-						}}
+						// style={{
+						// 	padding: "8px",
+						// 	fontSize: "14px",
+						// 	minHeight: "80px",
+						// 	width: "100%",
+						// 	boxSizing: "border-box",
+						// 	resize: "vertical",
+						// }}
 					/>
-					<button
-						onClick={() => setIsEditing(false)}
-						style={{ padding: "10px", cursor: "pointer" }}
-					>
+					<button onClick={() => setIsEditing(false)}>
 						Save Motion
 					</button>
 				</div>
 			) : (
-				<div style={{ marginBottom: "30px" }}>
-					<h1 style={{ wordWrap: "break-word" }}>{motion}</h1>
+				<div /*style={{ marginBottom: "30px" }}*/>
+					<h1 /*style={{ wordWrap: "break-word" }}*/>{motion}</h1>
 					{infoSlide && (
 						<p
-							style={{
-								fontStyle: "italic",
-								marginBottom: "20px",
-								whiteSpace: "pre-wrap",
-								wordWrap: "break-word",
-							}}
+						// style={{
+						// 	fontStyle: "italic",
+						// 	marginBottom: "20px",
+						// 	whiteSpace: "pre-wrap",
+						// 	wordWrap: "break-word",
+						// }}
 						>
 							{infoSlide}
 						</p>
 					)}
-					<button
-						onClick={() => setIsEditing(true)}
-						style={{ padding: "5px 10px", cursor: "pointer" }}
-					>
+					<button onClick={() => setIsEditing(true)}>
 						Edit Motion
 					</button>
 				</div>
 			)}
 
-			<hr style={{ marginBottom: "20px" }} />
-			<div style={{ marginTop: "50px" }}>
+			<hr />
+			<div>
 				<div>
 					<h2>{cpFormat[speakerIndex].role}</h2>
 					<CountDownTimer
@@ -101,7 +95,7 @@ function App() {
 					></CountDownTimer>
 				</div>
 
-				<div style={{ margin: "5px" }}>
+				<div>
 					<button
 						onClick={nextSpeaker}
 						disabled={speakerIndex == cpFormat.length - 1}

@@ -29,17 +29,10 @@ export default function CountDownTimer({ initialSeconds }) {
 	};
 
 	return (
-		<div style={{ textAlign: "center", marginTop: "5px" }}>
+		<div>
 			<ConvertIntoFormat seconds={timeLeft} />
 
-			<div
-				style={{
-					marginTop: "5px",
-					display: "flex",
-					gap: "5px",
-					justifyContent: "center",
-				}}
-			>
+			<div>
 				{/* Toggle between Pause and Resume using our named functions */}
 				{isRunning ? (
 					<button onClick={handlePause}>Pause</button>
