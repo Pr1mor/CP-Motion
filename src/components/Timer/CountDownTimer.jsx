@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import FormatTime from "./FormatTime";
+import "./CountDownTimer.css";
 
 export default function CountDownTimer({ initialSeconds }) {
 	const [timeLeft, setTimeLeft] = useState(initialSeconds);
@@ -29,38 +31,24 @@ export default function CountDownTimer({ initialSeconds }) {
 	};
 
 	return (
-		<div style={{ textAlign: "center", marginTop: "5px" }}>
-			<ConvertIntoFormat seconds={timeLeft} />
+		<div>
+			<FormatTime seconds={timeLeft} />
 
-			<div
-				style={{
-					marginTop: "5px",
-					display: "flex",
-					gap: "5px",
-					justifyContent: "center",
-				}}
-			>
-				{/* Toggle between Pause and Resume using our named functions */}
+			<div className="button-block">
 				{isRunning ? (
-					<button onClick={handlePause}>Pause</button>
+					<button id="pause-button" onClick={handlePause}>
+						Pause
+					</button>
 				) : (
-					<button onClick={handleResume}>Resume</button>
+					<button id="resume-button" onClick={handleResume}>
+						Resume
+					</button>
 				)}
 
-				<button onClick={handleReset}>Reset</button>
+				<button id="reset-button" onClick={handleReset}>
+					Reset
+				</button>
 			</div>
 		</div>
-	);
-}
-
-function ConvertIntoFormat({ seconds }) {
-	const minutes = Math.floor(seconds / 60);
-	const remainingSeconds = seconds % 60;
-	const formattedSeconds = String(remainingSeconds).padStart(2, "0");
-
-	return (
-		<h1>
-			{minutes}:{formattedSeconds}
-		</h1>
 	);
 }
