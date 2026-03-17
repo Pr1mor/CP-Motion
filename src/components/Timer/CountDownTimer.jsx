@@ -31,7 +31,7 @@ export default function CountDownTimer({ initialSeconds }) {
 	};
 
 	return (
-		<div>
+		<div className="time-button-block">
 			<FormatTime seconds={timeLeft} />
 
 			<div>

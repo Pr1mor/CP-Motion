@@ -5,6 +5,16 @@
 	font-style: normal;
 }
 
-.digital-clock {
+.formatTime-digital-clock {
 	font-family: "Digital-7-mono", monospace;
+	font-size: 4.5em;
+	font-weight: normal;
+
+	padding: 0.6rem;
+	border: 1px solid black;
+}
+
+.formatTime-block {
+	display: flex;
+	justify-content: center;
 }
