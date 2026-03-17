@@ -5,7 +5,8 @@
 }
 
 #next-speaker-button,
-#save-motion-button {
+#save-motion-button,
+#edit-motion-button {
 	min-width: 120px;
 }
 
@@ -16,7 +17,8 @@
 	font-weight: normal;
 }
 
-.editable-motion-block {
+.editable-motion-block,
+.non-editable-block {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;

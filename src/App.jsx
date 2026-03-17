@@ -49,7 +49,9 @@ function App() {
 					</button>
 				</div>
 			) : (
-				<div /*style={{ marginBottom: "30px" }}*/>
+				<div
+					className="non-editable-block" /*style={{ marginBottom: "30px" }}*/
+				>
 					<h1 /*style={{ wordWrap: "break-word" }}*/>{motion}</h1>
 					{infoSlide && (
 						<p
@@ -63,7 +65,10 @@ function App() {
 							{infoSlide}
 						</p>
 					)}
-					<button onClick={() => setIsEditing(true)}>
+					<button
+						id="edit-motion-button"
+						onClick={() => setIsEditing(true)}
+					>
 						Edit Motion
 					</button>
 				</div>
