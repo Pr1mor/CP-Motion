@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FormatTime from "./FormatTime";
+import "./CountDownTimer.css";
 
 export default function CountDownTimer({ initialSeconds }) {
 	const [timeLeft, setTimeLeft] = useState(initialSeconds);

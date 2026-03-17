@@ -8,7 +8,7 @@ export default function FormatTime({ seconds }) {
 	const formattedSeconds = String(remainingSeconds).padStart(2, "0");
 
 	return (
-		<h1>
+		<h1 className="digital-clock">
 			{minutes}:{formattedSeconds}
 		</h1>
 	);
