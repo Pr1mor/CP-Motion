@@ -1,0 +1,16 @@
+.next-speaker-container {
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+#next-speaker-button {
+	min-width: 120px;
+}
+
+#speaker-name {
+	text-align: center;
+	font-size: 2.5em;
+	margin: 20px;
+	font-weight: normal;
+}

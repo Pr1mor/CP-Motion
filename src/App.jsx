@@ -88,15 +88,16 @@ function App() {
 			<hr />
 			<div>
 				<div>
-					<h2>{cpFormat[speakerIndex].role}</h2>
+					<h2 id="speaker-name">{cpFormat[speakerIndex].role}</h2>
 					<CountDownTimer
 						key={speakerIndex}
 						initialSeconds={cpFormat[speakerIndex].time}
 					></CountDownTimer>
 				</div>
 
-				<div>
+				<div className="next-speaker-container">
 					<button
+						id="next-speaker-button"
 						onClick={nextSpeaker}
 						disabled={speakerIndex == cpFormat.length - 1}
 					>
