@@ -5,16 +5,27 @@ import "./CountDownTimer.css";
 export default function CountDownTimer({ initialSeconds }) {
 	const [timeLeft, setTimeLeft] = useState(initialSeconds);
 	const [isRunning, setIsRunning] = useState(false);
-
+	const [mainSpeech, setMainSpeech] = useState(true);
 	useEffect(() => {
-		if (timeLeft <= 0 || !isRunning) return;
+		if (isRunning) {
+			if (timeLeft <= 0 && !mainSpeech) {
+				setIsRunning(false);
+				return; // hard stop
+			}
 
-		const interval = setInterval(() => {
-			setTimeLeft((prev) => prev - 1);
-		}, 1000);
+			// main speech ended start grace period
+			if (timeLeft <= 0 && mainSpeech) {
+				setMainSpeech(false);
+				setTimeLeft(15);
+				return;
+			}
 
-		return () => clearInterval(interval);
-	}, [timeLeft, isRunning]);
+			const interval = setInterval(() => {
+				setTimeLeft((prev) => prev - 1);
+			}, 1000);
+			return () => clearInterval(interval);
+		}
+	}, [timeLeft, isRunning, mainSpeech]);
 
 	// --- EVENT HANDLERS ---
 	const handlePause = () => {
@@ -28,6 +39,7 @@ export default function CountDownTimer({ initialSeconds }) {
 	const handleReset = () => {
 		setIsRunning(false);
 		setTimeLeft(initialSeconds);
+		setMainSpeech(true);
 	};
 
 	return (
