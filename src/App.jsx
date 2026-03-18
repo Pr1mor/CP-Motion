@@ -52,7 +52,7 @@ function App() {
 				<div className="non-editable-block">
 					<div className="motion-infoslide">
 						<h1 id="main-motion">{motion}</h1>
-						<hr />
+						<hr id="motion-infoslide-hr" />
 						{infoSlide && (
 							<p
 								id="info-slide"
