@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import FormatTime from "./FormatTime";
 import "./CountDownTimer.css";
 
+const GRACE_TIME = 15;
+
 export default function CountDownTimer({ initialSeconds }) {
 	const [timeLeft, setTimeLeft] = useState(initialSeconds);
 	const [isRunning, setIsRunning] = useState(false);
@@ -16,7 +18,7 @@ export default function CountDownTimer({ initialSeconds }) {
 			// main speech ended start grace period
 			if (timeLeft <= 0 && mainSpeech) {
 				setMainSpeech(false);
-				setTimeLeft(15);
+				setTimeLeft(GRACE_TIME);
 				return;
 			}
 
