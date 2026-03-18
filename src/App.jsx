@@ -49,22 +49,24 @@ function App() {
 					</button>
 				</div>
 			) : (
-				<div
-					className="non-editable-block" /*style={{ marginBottom: "30px" }}*/
-				>
-					<h1 /*style={{ wordWrap: "break-word" }}*/>{motion}</h1>
-					{infoSlide && (
-						<p
-						// style={{
-						// 	fontStyle: "italic",
-						// 	marginBottom: "20px",
-						// 	whiteSpace: "pre-wrap",
-						// 	wordWrap: "break-word",
-						// }}
-						>
-							{infoSlide}
-						</p>
-					)}
+				<div className="non-editable-block">
+					<div className="motion-infoslide">
+						<h1 id="main-motion">{motion}</h1>
+						<hr id="motion-infoslide-hr" />
+						{infoSlide && (
+							<p
+								id="info-slide"
+								// style={{
+								// 	fontStyle: "italic",
+								// 	marginBottom: "20px",
+								// 	whiteSpace: "pre-wrap",
+								// 	wordWrap: "break-word",
+								// }}
+							>
+								{infoSlide}
+							</p>
+						)}
+					</div>
 					<button
 						id="edit-motion-button"
 						onClick={() => setIsEditing(true)}

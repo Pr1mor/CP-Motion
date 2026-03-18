@@ -26,6 +26,20 @@
 	margin: 30px;
 }
 
+.non-editable-block {
+	text-align: center;
+}
+
+.motion-infoslide {
+	border: 1px solid black;
+	background-color: #00183a;
+	margin-bottom: 10px;
+	padding: 0.5rem 0.8rem;
+	min-width: 320px;
+	min-height: 100px;
+	width: 90%;
+}
+
 .edit-motion {
 	min-width: 320px;
 	padding: 0.5rem 0.8rem;
@@ -52,4 +66,36 @@
 	color: white;
 
 	resize: vertical;
+}
+
+button {
+	min-width: 100px;
+	height: 5vh;
+	background-color: #cb9509;
+	border: 1px solid #00183a;
+	font-weight: bold;
+	font-size: larger;
+	color: #00183a;
+	cursor: pointer;
+}
+
+#main-motion,
+#info-slide {
+	word-wrap: break-word;
+	font-family: sans-serif;
+	white-space: pre-wrap;
+	margin: 20px;
+}
+#motion-infoslide-hr {
+	width: 90%;
+	margin: 0 auto;
+}
+
+#main-motion {
+	font-weight: 600;
+	font-size: 1.8em;
+}
+
+#info-slide {
+	font-size: 1.2em;
 }
