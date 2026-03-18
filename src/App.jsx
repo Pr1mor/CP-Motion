@@ -3,7 +3,7 @@ import "./App.css";
 import CountDownTimer from "./components/Timer/CountDownTimer";
 
 const cpFormat = [
-	{ role: "Prime Minister", time: 6 * 60 },
+	{ role: "Prime Minister", time: 2 },
 	{ role: "Leader of Opposition", time: 7 * 60 },
 	{ role: "Deputy Prime Minister", time: 7 * 60 },
 	{ role: "Deputy Leader of Opposition", time: 7 * 60 },

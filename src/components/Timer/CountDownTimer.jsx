@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import FormatTime from "./FormatTime";
+import FormatGraceTime from "./FormatGraceTime";
 import "./CountDownTimer.css";
 
 const GRACE_TIME = 15;
 
 export default function CountDownTimer({ initialSeconds }) {
-	const [timeLeft, setTimeLeft] = useState(initialSeconds);
+	const [timeLeft, setTimeLeft] = useState(initialSeconds * 100); // time left is in centiseconds
 	const [isRunning, setIsRunning] = useState(false);
 	const [mainSpeech, setMainSpeech] = useState(true);
 	useEffect(() => {
@@ -18,14 +19,21 @@ export default function CountDownTimer({ initialSeconds }) {
 			// main speech ended start grace period
 			if (timeLeft <= 0 && mainSpeech) {
 				setMainSpeech(false);
-				setTimeLeft(GRACE_TIME);
+				setTimeLeft(GRACE_TIME * 100);
 				return;
 			}
 
-			const interval = setInterval(() => {
-				setTimeLeft((prev) => prev - 1);
-			}, 1000);
-			return () => clearInterval(interval);
+			if (mainSpeech) {
+				const interval = setInterval(() => {
+					setTimeLeft((prev) => prev - 100);
+				}, 1000);
+				return () => clearInterval(interval);
+			} else {
+				const interval = setInterval(() => {
+					setTimeLeft((prev) => prev - 1);
+				}, 10);
+				return () => clearInterval(interval);
+			}
 		}
 	}, [timeLeft, isRunning, mainSpeech]);
 
@@ -40,13 +48,17 @@ export default function CountDownTimer({ initialSeconds }) {
 
 	const handleReset = () => {
 		setIsRunning(false);
-		setTimeLeft(initialSeconds);
+		setTimeLeft(initialSeconds * 100);
 		setMainSpeech(true);
 	};
 
 	return (
 		<div>
-			<FormatTime seconds={timeLeft} />
+			{mainSpeech ? (
+				<FormatTime seconds={Math.floor(timeLeft / 100)} />
+			) : (
+				<FormatGraceTime centiseconds={timeLeft}></FormatGraceTime>
+			)}
 
 			<div className="button-block">
 				{isRunning ? (
