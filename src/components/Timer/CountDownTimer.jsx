@@ -11,31 +11,34 @@ export default function CountDownTimer({ initialSeconds }) {
 	const [mainSpeech, setMainSpeech] = useState(true);
 	useEffect(() => {
 		if (isRunning) {
-			if (timeLeft <= 0 && !mainSpeech) {
-				setIsRunning(false);
-				return; // hard stop
-			}
+			const expectedEndTime = Date.now() + timeLeft * 10; // converting centiseconds into milliseconds
 
-			// main speech ended start grace period
-			if (timeLeft <= 0 && mainSpeech) {
-				setMainSpeech(false);
-				setTimeLeft(GRACE_TIME * 100);
-				return;
-			}
+			const interval = setInterval(
+				() => {
+					const currentTime = Date.now();
+					const msRemaining = expectedEndTime - currentTime;
 
-			if (mainSpeech) {
-				const interval = setInterval(() => {
-					setTimeLeft((prev) => prev - 100);
-				}, 1000);
-				return () => clearInterval(interval);
-			} else {
-				const interval = setInterval(() => {
-					setTimeLeft((prev) => prev - 1);
-				}, 10);
-				return () => clearInterval(interval);
-			}
+					const csRemaining = Math.ceil(msRemaining / 10); // centiseconds remaining
+
+					if (csRemaining <= 0) {
+						if (!mainSpeech) {
+							setIsRunning(false);
+							setTimeLeft(0);
+						} else {
+							setMainSpeech(false);
+							setTimeLeft(GRACE_TIME * 100); // grace time in centiseconds
+						}
+
+						return;
+					}
+
+					setTimeLeft(csRemaining);
+				},
+				mainSpeech ? 1000 : 10,
+			);
+			return () => clearInterval(interval);
 		}
-	}, [timeLeft, isRunning, mainSpeech]);
+	}, [isRunning, mainSpeech]);
 
 	// --- EVENT HANDLERS ---
 	const handlePause = () => {
