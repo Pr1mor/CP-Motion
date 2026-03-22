@@ -1,10 +1,15 @@
-.next-speaker-container {
-	margin-top: 10px;
-	display: flex;
-	justify-content: center;
+#prev-speaker-button {
+	clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+	transform: rotate(-90deg);
+	min-width: 30px;
 }
 
-#next-speaker-button,
+#next-speaker-button {
+	clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+	transform: rotate(90deg);
+	min-width: 30px;
+}
+
 #save-motion-button,
 #edit-motion-button {
 	min-width: 120px;
@@ -98,4 +103,11 @@ button {
 
 #info-slide {
 	font-size: 1.2em;
+}
+
+.speaker-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
 }
