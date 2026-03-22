@@ -1,9 +1,11 @@
-.next-speaker-container {
+.next-speaker-container,
+.prev-speaker-container {
 	margin-top: 10px;
 	display: flex;
 	justify-content: center;
 }
 
+#prev-speaker-button,
 #next-speaker-button,
 #save-motion-button,
 #edit-motion-button {

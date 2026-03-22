@@ -24,6 +24,12 @@ function App() {
 		}
 	};
 
+	const prevSpeaker = () => {
+		if (speakerIndex > 0) {
+			setSpeakerIndex((curr) => curr - 1);
+		}
+	};
+
 	return (
 		<>
 			{isEditing ? (
@@ -93,6 +99,16 @@ function App() {
 						disabled={speakerIndex == cpFormat.length - 1}
 					>
 						Next Speaker
+					</button>
+				</div>
+
+				<div className="prev-speaker-container">
+					<button
+						id="prev-speaker-button"
+						onClick={prevSpeaker}
+						disabled={speakerIndex == 0}
+					>
+						Prev Speaker
 					</button>
 				</div>
 			</div>
