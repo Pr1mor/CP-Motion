@@ -72,33 +72,26 @@ function App() {
 
 			<hr />
 			<div>
-				<div>
-					<h2 id="speaker-name">{cpFormat[speakerIndex].role}</h2>
-					<CountDownTimer
-						key={speakerIndex}
-						initialSeconds={cpFormat[speakerIndex].time}
-					></CountDownTimer>
-				</div>
-
-				<div className="next-speaker-container">
-					<button
-						id="next-speaker-button"
-						onClick={nextSpeaker}
-						disabled={speakerIndex === cpFormat.length - 1}
-					>
-						Next Speaker
-					</button>
-				</div>
-
-				<div className="prev-speaker-container">
+				<div className="speaker-section">
 					<button
 						id="prev-speaker-button"
 						onClick={prevSpeaker}
 						disabled={speakerIndex === 0}
-					>
-						Prev Speaker
-					</button>
+					></button>
+
+					<h2 id="speaker-name">{cpFormat[speakerIndex].role}</h2>
+
+					<button
+						id="next-speaker-button"
+						onClick={nextSpeaker}
+						disabled={speakerIndex === cpFormat.length - 1}
+					></button>
 				</div>
+
+				<CountDownTimer
+					key={speakerIndex}
+					initialSeconds={cpFormat[speakerIndex].time}
+				></CountDownTimer>
 			</div>
 		</>
 	);

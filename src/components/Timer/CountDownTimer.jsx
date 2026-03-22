@@ -70,7 +70,7 @@ export default function CountDownTimer({ initialSeconds }) {
 					</button>
 				) : (
 					<button id="resume-button" onClick={handleResume}>
-						Resume
+						Start
 					</button>
 				)}
 
