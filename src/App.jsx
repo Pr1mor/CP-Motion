@@ -59,19 +59,7 @@ function App() {
 					<div className="motion-infoslide">
 						<h1 id="main-motion">{motion}</h1>
 						<hr id="motion-infoslide-hr" />
-						{infoSlide && (
-							<p
-								id="info-slide"
-								// style={{
-								// 	fontStyle: "italic",
-								// 	marginBottom: "20px",
-								// 	whiteSpace: "pre-wrap",
-								// 	wordWrap: "break-word",
-								// }}
-							>
-								{infoSlide}
-							</p>
-						)}
+						{infoSlide && <p id="info-slide">{infoSlide}</p>}
 					</div>
 					<button
 						id="edit-motion-button"
@@ -96,7 +84,7 @@ function App() {
 					<button
 						id="next-speaker-button"
 						onClick={nextSpeaker}
-						disabled={speakerIndex == cpFormat.length - 1}
+						disabled={speakerIndex === cpFormat.length - 1}
 					>
 						Next Speaker
 					</button>
@@ -106,7 +94,7 @@ function App() {
 					<button
 						id="prev-speaker-button"
 						onClick={prevSpeaker}
-						disabled={speakerIndex == 0}
+						disabled={speakerIndex === 0}
 					>
 						Prev Speaker
 					</button>
