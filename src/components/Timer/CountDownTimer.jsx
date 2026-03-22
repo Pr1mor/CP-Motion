@@ -1,20 +1,44 @@
 import React, { useEffect, useState } from "react";
 import FormatTime from "./FormatTime";
+import FormatGraceTime from "./FormatGraceTime";
 import "./CountDownTimer.css";
 
+const GRACE_TIME = 15;
+
 export default function CountDownTimer({ initialSeconds }) {
-	const [timeLeft, setTimeLeft] = useState(initialSeconds);
+	const [timeLeft, setTimeLeft] = useState(initialSeconds * 100); // time left is in centiseconds
 	const [isRunning, setIsRunning] = useState(false);
-
+	const [mainSpeech, setMainSpeech] = useState(true);
 	useEffect(() => {
-		if (timeLeft <= 0 || !isRunning) return;
+		if (isRunning) {
+			const expectedEndTime = Date.now() + timeLeft * 10; // converting centiseconds into milliseconds
 
-		const interval = setInterval(() => {
-			setTimeLeft((prev) => prev - 1);
-		}, 1000);
+			const interval = setInterval(
+				() => {
+					const currentTime = Date.now();
+					const msRemaining = expectedEndTime - currentTime;
 
-		return () => clearInterval(interval);
-	}, [timeLeft, isRunning]);
+					const csRemaining = Math.ceil(msRemaining / 10); // centiseconds remaining
+
+					if (csRemaining <= 0) {
+						if (!mainSpeech) {
+							setIsRunning(false);
+							setTimeLeft(0);
+						} else {
+							setMainSpeech(false);
+							setTimeLeft(GRACE_TIME * 100); // grace time in centiseconds
+						}
+
+						return;
+					}
+
+					setTimeLeft(csRemaining);
+				},
+				mainSpeech ? 1000 : 10,
+			);
+			return () => clearInterval(interval);
+		}
+	}, [isRunning, mainSpeech]);
 
 	// --- EVENT HANDLERS ---
 	const handlePause = () => {
@@ -27,12 +51,17 @@ export default function CountDownTimer({ initialSeconds }) {
 
 	const handleReset = () => {
 		setIsRunning(false);
-		setTimeLeft(initialSeconds);
+		setTimeLeft(initialSeconds * 100);
+		setMainSpeech(true);
 	};
 
 	return (
 		<div>
-			<FormatTime seconds={timeLeft} />
+			{mainSpeech ? (
+				<FormatTime seconds={Math.floor(timeLeft / 100)} />
+			) : (
+				<FormatGraceTime centiseconds={timeLeft}></FormatGraceTime>
+			)}
 
 			<div className="button-block">
 				{isRunning ? (
